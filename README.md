@@ -10,7 +10,7 @@ See the /examples folder for more information.
 
 Package home: https://github.com/klauspost/dawa
 
-Information abou the format and download/API options, see http://dawa.aws.dk/
+Information about the format and download/API options, see http://dawa.aws.dk/
 
 # Installation 
 
@@ -18,7 +18,7 @@ Information abou the format and download/API options, see http://dawa.aws.dk/
 
 This will also install the only dependecy "go-codec": https://github.com/ugorji/go which is used to decode JSON streams more efficiently than the standard golang libraries.
 
-To use the library in your own code, simply add ```"github.com/klauspost/dawa"``` to your imports.
+To use the library in your own code, simply add ```import "github.com/klauspost/dawa"``` to your imports.
 
 # Documentation
 [![GoDoc][1]][2] [![Build Status][3]][4]
@@ -29,7 +29,7 @@ To use the library in your own code, simply add ```"github.com/klauspost/dawa"``
 
 # Usage
 
-Note that these examples ignore error values. You should of course never do that. For complete examples with error checking, see the /examples fodler.
+Note that these examples ignore error values. You should of course never do that. For complete examples with error checking, see the /examples folder.
 
 The library supplies all known data structures, which means that it can decode responses from the Web API:
 
