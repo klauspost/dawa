@@ -16,4 +16,4 @@ package dawa
 
 // modify JSONStrictFieldCheck to return an error on unknown fields on JSON import.
 // If true, return an error if a map in the stream has a key which does not map to any field; else read and discard the key and value in the stream and proceed to the next.
-var JSONStrictFieldCheck = true
+var JSONStrictFieldCheck = false
