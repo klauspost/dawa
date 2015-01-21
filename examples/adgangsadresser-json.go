@@ -14,7 +14,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	iter, err := aws.ImportAdgangsAdresserJSON(file)
+	iter, err := dawa.ImportAdgangsAdresserJSON(file)
 	if err != nil {
 		log.Fatal(err)
 	}

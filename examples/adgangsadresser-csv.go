@@ -14,7 +14,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	iter, err := aws.ImportAdgangsAdresserCSV(file)
+	iter, err := dawa.ImportAdgangsAdresserCSV(file)
 	if err != nil {
 		log.Fatal(err)
 	}

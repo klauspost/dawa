@@ -14,7 +14,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	iter, err := aws.ImportPostnumreJSON(file)
+	iter, err := dawa.ImportPostnumreJSON(file)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -30,7 +30,10 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		n++
+		if a == nil {
+			panic("empty")
+		}
 		log.Printf("Entry:%#v\n", a)
+		n++
 	}
 }

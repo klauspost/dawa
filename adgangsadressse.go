@@ -23,7 +23,7 @@ type AdgangsAdresse struct {
 	Region            Region           `json:"region"`            // Regionen som adressen er beliggende i. Beregnes udfra adgangspunktet og regionsinddelingerne fra DAGI
 	Retskreds         Retskreds        `json:"retskreds"`         // Retskredsen som adressen er beliggende i. Beregnes udfra adgangspunktet og retskredsinddelingerne fra DAGI
 	Sogn              Sogn             `json:"sogn"`              // Sognet som adressen er beliggende i. Beregnes udfra adgangspunktet og sogneinddelingerne fra DAGI
-	Status            int              `json:"status"`            //Adressens status, som modtaget fra BBR. "1" angiver en endelig adresse og "3" angiver en foreløbig adresse". Adresser med status "2" eller "4" er ikke med i DAWA.
+	Status            int              `json:"status"`            // Adressens status, som modtaget fra BBR. "1" angiver en endelig adresse og "3" angiver en foreløbig adresse". Adresser med status "2" eller "4" er ikke med i DAWA.
 	SupplerendeBynavn string           `json:"supplerendebynavn"` // Et supplerende bynavn – typisk landsbyens navn – eller andet lokalt stednavn, der er fastsat af kommunen for at præcisere adressens beliggenhed indenfor postnummeret.
 	Vejstykke         VejstykkeRef     `json:"vejstykke"`         // Vejstykket som adressen er knyttet til.
 	Zone              string           `json:"zone"`              // Hvilken zone adressen ligger i. "Byzone", "Sommerhusområde" eller "Landzone". Beregnes udfra adgangspunktet og zoneinddelingerne fra PlansystemDK

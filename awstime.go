@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// Since this is not a standard encoded field, we must create out own type.
+// Since date/time is not a standard encoded field, we must create out own type.
 type AwsTime time.Time
 
 var location *time.Location

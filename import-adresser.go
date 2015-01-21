@@ -154,45 +154,21 @@ func ImportAdresserCSV(in io.Reader) (*AdresseIter, error) {
 // ImportAdresserJSON will import "adresser" from a JSON input, supplied to the reader.
 // An iterator will be returned that return all addresses.
 func ImportAdresserJSON(in io.Reader) (*AdresseIter, error) {
-	reader := bufio.NewReader(in)
-
-	//Skip until after '['
-	_, err := reader.ReadBytes('[')
-	if err != nil {
-		return nil, err
+	var h codec.JsonHandle
+	h.DecodeOptions.ErrorIfNoField = JSONStrictFieldCheck
+	// use a buffered reader for efficiency
+	if _, ok := in.(io.ByteScanner); !ok {
+		in = bufio.NewReader(in)
 	}
-	// Start decoder
 	ret := &AdresseIter{a: make(chan Adresse, 100)}
 	go func() {
 		defer close(ret.a)
-		var h codec.JsonHandle
-		h.ErrorIfNoField = true
-		for {
-			var dec *codec.Decoder = codec.NewDecoder(reader, &h)
-			a := Adresse{}
-			if err := dec.Decode(&a); err != nil {
-				ret.err = err
-				return
-			}
-			ret.a <- a
-
-			// Skip comma
-			if b, err := readByteSkippingSpace(reader); err != nil {
-				ret.err = err
-				return
-			} else {
-				switch b {
-				case ',':
-					continue
-				case ']':
-					ret.err = io.EOF
-					return
-				default:
-					panic("Invalid character in JSON data: " + string([]byte{b}))
-				}
-			}
-
+		var dec *codec.Decoder = codec.NewDecoder(in, &h)
+		ret.err = dec.Decode(&ret.a)
+		if ret.err == nil {
+			ret.err = io.EOF
 		}
 	}()
+
 	return ret, nil
 }

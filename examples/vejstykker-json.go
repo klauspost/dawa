@@ -14,7 +14,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	iter, err := aws.ImportVejstykkerJSON(file)
+	iter, err := dawa.ImportVejstykkerJSON(file)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -29,6 +29,9 @@ func main() {
 		}
 		if err != nil {
 			log.Fatal(err)
+		}
+		if a == nil {
+			panic("empty")
 		}
 		n++
 		log.Printf("Entry:%#v\n", a)
