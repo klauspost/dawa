@@ -11,7 +11,7 @@ import (
 
 // Makes a request to the web api and prints the result.
 func main() {
-	// Get an address
+	// Get an array of addresses
 	resp, err := http.Get("http://dawa.aws.dk/adgangsadresser?husnr=14&postnr=9000")
 
 	if err != nil {
