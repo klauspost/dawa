@@ -32,6 +32,16 @@ func ParseTime(s string) (*AwsTime, error) {
 	return &t, nil
 }
 
+// MustParseTime will return the time encoding for a single field
+// It the input must be AWS formatted encoding
+func MustParseTime(s string) AwsTime {
+	result, err := time.ParseInLocation("2006-01-02T15:04:05.000", string(s), location)
+	if err != nil {
+		panic(err)
+	}
+	return AwsTime(result)
+}
+
 func (t AwsTime) MarshalText() (text []byte, err error) {
 	return t.MarshalJSON()
 }
