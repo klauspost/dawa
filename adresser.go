@@ -114,7 +114,7 @@ func ImportAdresserCSV(in io.Reader) (*AdresseIter, error) {
 
 			// PROCESS: nøjagtighed,kilde,tekniskstandard,tekstretning,ddkn_m100,ddkn_km1,ddkn_km10,adressepunktændringsdato,adgangsadresseid,adgangsadresse_status
 			a.Adgangsadresse.Adgangspunkt.Nøjagtighed = v["nøjagtighed"]
-			a.Adgangsadresse.Adgangspunkt.Kilde, _ = strconv.Atoi(v["nøjagtighed"])
+			a.Adgangsadresse.Adgangspunkt.Kilde, _ = strconv.Atoi(v["kilde"])
 			a.Adgangsadresse.Adgangspunkt.Tekniskstandard = v["tekniskstandard"]
 			a.Adgangsadresse.Adgangspunkt.Tekstretning, _ = strconv.ParseFloat(v["tekstretning"], 64)
 			a.Adgangsadresse.DDKN.M100 = v["ddkn_m100"]

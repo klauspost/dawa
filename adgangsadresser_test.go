@@ -9,7 +9,7 @@ import (
 )
 
 var adgangs_csv_data = `id,status,oprettet,ændret,vejkode,vejnavn,husnr,supplerendebynavn,postnr,postnrnavn,kommunekode,kommunenavn,ejerlavkode,ejerlavnavn,matrikelnr,esrejendomsnr,etrs89koordinat_øst,etrs89koordinat_nord,wgs84koordinat_bredde,wgs84koordinat_længde,nøjagtighed,kilde,tekniskstandard,tekstretning,adressepunktændringsdato,ddkn_m100,ddkn_km1,ddkn_km10,kvh,regionskode,regionsnavn,sognekode,sognenavn,politikredskode,politikredsnavn,retskredskode,retskredsnavn,opstillingskredskode,opstillingskredsnavn,zone
-0a3f507a-3669-32b8-e044-0003ba298018,1,2000-02-05T20:17:59.000,2009-11-25T01:07:37.000,0004,Abel Cathrines Gade,3A,,1654,København V,0101,København,2000174,"Udenbys Vester Kvarter, København",377,9343,723743.16,6175322.16,55.6720594006065,12.5582458296225,A,5,TD,200,2002-04-07T00:00:00.000,100m_61753_7237,1km_6175_723,10km_617_72,01010004__3A,1084,Region Hovedstaden,9185,Vesterbro,1470,Københavns Politi,1101,Københavns Byret,0009,Vesterbro,Byzone
+0a3f507a-3669-32b8-e044-0003ba298018,1,2000-02-05T20:17:59.000,2009-11-25T01:07:37.000,0004,Abel Cathrines Gade,3A,Supp,1654,København V,0101,København,2000174,"Udenbys Vester Kvarter, København",377,9343,723743.16,6175322.16,55.6720594006065,12.5582458296225,A,5,TD,200,2002-04-07T00:00:00.000,100m_61753_7237,1km_6175_723,10km_617_72,01010004__3A,1084,Region Hovedstaden,9185,Vesterbro,1470,Københavns Politi,1101,Københavns Byret,0009,Vesterbro,Byzone
 0a3f507a-3680-32b8-e044-0003ba298018,1,2000-12-14T10:07:42.000,2009-11-25T01:07:37.000,0004,Abel Cathrines Gade,28,,1654,København V,0101,København,2000174,"Udenbys Vester Kvarter, København",70æ,342514,723928.98,6175195.49,55.6708378041398,12.5610912697286,A,5,TD,200,2002-04-05T00:00:00.000,100m_61751_7239,1km_6175_723,10km_617_72,01010004__28,1084,Region Hovedstaden,9185,Vesterbro,1470,Københavns Politi,1101,Københavns Byret,0009,Vesterbro,Byzone
 0a3f507a-367c-32b8-e044-0003ba298018,1,2000-02-05T20:27:56.000,2009-11-25T01:07:37.000,0004,Abel Cathrines Gade,24,,1654,København V,0101,København,2000174,"Udenbys Vester Kvarter, København",70æ,342514,723920.84,6175201.53,55.6708957228815,12.5609670270951,A,5,TD,200,2002-04-07T00:00:00.000,100m_61752_7239,1km_6175_723,10km_617_72,01010004__24,1084,Region Hovedstaden,9185,Vesterbro,1470,Københavns Politi,1101,Københavns Byret,0009,Vesterbro,Byzone
 `
@@ -24,7 +24,7 @@ func TestImportAdgangsAdresserCSV(t *testing.T) {
 				M100: "100m_61753_7237",
 			},
 			Adgangspunkt: Adgangspunkt{
-				Kilde: 0,
+				Kilde: 5,
 				Koordinater: []float64{
 					55.6720594006065,
 					12.5582458296225,
@@ -84,7 +84,7 @@ func TestImportAdgangsAdresserCSV(t *testing.T) {
 				Navn: "Vesterbro",
 			},
 			Status:            1,
-			SupplerendeBynavn: "",
+			SupplerendeBynavn: "Supp",
 			Vejstykke: VejstykkeRef{
 				Href: "",
 				Kode: "0004",

@@ -20,7 +20,7 @@ func TestImportAdresserCSV(t *testing.T) {
 			Adgangsadresse: AdgangsAdresse{
 				DDKN: DDKN{Km1: "1km_6105_470", Km10: "10km_610_47", M100: "100m_61057_4706"},
 				Adgangspunkt: Adgangspunkt{
-					Kilde: 0, Koordinater: []float64{55.0972751504817, 8.53959543878291}, Nøjagtighed: "A", Tekniskstandard: "UF", Tekstretning: 200, Ændret: MustParseTime("2004-10-08T00:00:00.000"),
+					Kilde: 5, Koordinater: []float64{55.0972751504817, 8.53959543878291}, Nøjagtighed: "A", Tekniskstandard: "UF", Tekstretning: 200, Ændret: MustParseTime("2004-10-08T00:00:00.000"),
 				},
 				Ejerlav:           Ejerlav{Kode: 1470852, Navn: "Kirkeby, Rømø"},
 				EsrEjendomsNr:     "9097",

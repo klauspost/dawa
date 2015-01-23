@@ -203,7 +203,7 @@ func ImportAdgangsAdresserCSV(in io.Reader) (*AdgangsAdresseIter, error) {
 			a.Adgangspunkt.Koordinater[1], _ = strconv.ParseFloat(v["wgs84koordinat_længde"], 64)
 
 			a.Adgangspunkt.Nøjagtighed = v["nøjagtighed"]
-			a.Adgangspunkt.Kilde, _ = strconv.Atoi(v["nøjagtighed"])
+			a.Adgangspunkt.Kilde, _ = strconv.Atoi(v["kilde"])
 			a.Adgangspunkt.Tekniskstandard = v["tekniskstandard"]
 			a.Adgangspunkt.Tekstretning, _ = strconv.ParseFloat(v["tekstretning"], 64)
 			a.DDKN.M100 = v["ddkn_m100"]
