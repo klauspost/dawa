@@ -129,7 +129,7 @@ func (q AdgangsAdresseQuery) First() (*AdgangsAdresse, error) {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Q(s string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "q", Values: []string{s}})
+	q.add(textQuery{Name: "q", Values: []string{s}})
 	return q
 }
 
@@ -139,7 +139,7 @@ func (q *AdgangsAdresseQuery) Q(s string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) ID(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "id", Values: s, Multi: true})
+	q.add(textQuery{Name: "id", Values: s, Multi: true})
 	return q
 }
 
@@ -150,7 +150,7 @@ func (q *AdgangsAdresseQuery) ID(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Kvh(s string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "kvh", Values: []string{s}, Multi: false, Null: false})
+	q.add(textQuery{Name: "kvh", Values: []string{s}, Multi: false, Null: false})
 	return q
 }
 
@@ -161,7 +161,7 @@ func (q *AdgangsAdresseQuery) Kvh(s string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Status(s string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "status", Values: []string{s}, Multi: false, Null: false})
+	q.add(textQuery{Name: "status", Values: []string{s}, Multi: false, Null: false})
 	return q
 }
 
@@ -171,7 +171,7 @@ func (q *AdgangsAdresseQuery) Status(s string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Vejkode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "vejkode", Values: s, Multi: true, Null: false})
+	q.add(textQuery{Name: "vejkode", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -182,7 +182,7 @@ func (q *AdgangsAdresseQuery) Vejkode(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Vejnavn(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "vejnavn", Values: s, Multi: true, Null: true})
+	q.add(textQuery{Name: "vejnavn", Values: s, Multi: true, Null: true})
 	return q
 }
 
@@ -192,7 +192,7 @@ func (q *AdgangsAdresseQuery) Vejnavn(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Husnr(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "husnr", Values: s, Multi: true, Null: false})
+	q.add(textQuery{Name: "husnr", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -202,7 +202,7 @@ func (q *AdgangsAdresseQuery) Husnr(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) SupplerendeBynavn(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "supplerendebynavn", Values: s, Multi: true, Null: true})
+	q.add(textQuery{Name: "supplerendebynavn", Values: s, Multi: true, Null: true})
 	return q
 }
 
@@ -212,7 +212,7 @@ func (q *AdgangsAdresseQuery) SupplerendeBynavn(s ...string) *AdgangsAdresseQuer
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Postnr(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "postnr", Values: s, Multi: true, Null: false})
+	q.add(textQuery{Name: "postnr", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -222,7 +222,7 @@ func (q *AdgangsAdresseQuery) Postnr(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Kommunekode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "kommunekode", Values: s, Multi: true, Null: false})
+	q.add(textQuery{Name: "kommunekode", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -232,7 +232,7 @@ func (q *AdgangsAdresseQuery) Kommunekode(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Ejerlavkode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "ejerlavkode", Values: s, Multi: true, Null: false})
+	q.add(textQuery{Name: "ejerlavkode", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -244,7 +244,7 @@ func (q *AdgangsAdresseQuery) Ejerlavkode(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Zonekode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "zonekode", Values: s, Multi: true, Null: false})
+	q.add(textQuery{Name: "zonekode", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -254,7 +254,7 @@ func (q *AdgangsAdresseQuery) Zonekode(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Matrikelnr(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "matrikelnr", Values: s, Multi: true, Null: false})
+	q.add(textQuery{Name: "matrikelnr", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -264,7 +264,7 @@ func (q *AdgangsAdresseQuery) Matrikelnr(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Esrejendomsnr(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "esrejendomsnr", Values: s, Multi: true, Null: false})
+	q.add(textQuery{Name: "esrejendomsnr", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -274,7 +274,7 @@ func (q *AdgangsAdresseQuery) Esrejendomsnr(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Srid(s string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "srid", Values: []string{s}, Multi: false, Null: false})
+	q.add(textQuery{Name: "srid", Values: []string{s}, Multi: false, Null: false})
 	return q
 }
 
@@ -290,7 +290,7 @@ func (q *AdgangsAdresseQuery) Srid(s string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Polygon(s string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "polygon", Values: []string{s}, Multi: false, Null: false})
+	q.add(textQuery{Name: "polygon", Values: []string{s}, Multi: false, Null: false})
 	return q
 }
 
@@ -302,7 +302,7 @@ func (q *AdgangsAdresseQuery) Polygon(s string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Cirkel(s string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "cirkel", Values: []string{s}, Multi: false, Null: false})
+	q.add(textQuery{Name: "cirkel", Values: []string{s}, Multi: false, Null: false})
 	return q
 }
 
@@ -313,7 +313,7 @@ func (q *AdgangsAdresseQuery) Cirkel(s string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Regionskode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "regionskode", Values: s, Multi: true, Null: true})
+	q.add(textQuery{Name: "regionskode", Values: s, Multi: true, Null: true})
 	return q
 }
 
@@ -324,7 +324,7 @@ func (q *AdgangsAdresseQuery) Regionskode(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Sognekode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "sognekode", Values: s, Multi: true, Null: true})
+	q.add(textQuery{Name: "sognekode", Values: s, Multi: true, Null: true})
 	return q
 }
 
@@ -335,7 +335,7 @@ func (q *AdgangsAdresseQuery) Sognekode(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Opstillingskredskode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "opstillingskredskode", Values: s, Multi: true, Null: true})
+	q.add(textQuery{Name: "opstillingskredskode", Values: s, Multi: true, Null: true})
 	return q
 }
 
@@ -346,7 +346,7 @@ func (q *AdgangsAdresseQuery) Opstillingskredskode(s ...string) *AdgangsAdresseQ
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Retskredskode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "retskredskode", Values: s, Multi: true, Null: true})
+	q.add(textQuery{Name: "retskredskode", Values: s, Multi: true, Null: true})
 	return q
 }
 
@@ -357,7 +357,7 @@ func (q *AdgangsAdresseQuery) Retskredskode(s ...string) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Politikredskode(s ...string) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "politikredskode", Values: s, Multi: true, Null: true})
+	q.add(textQuery{Name: "politikredskode", Values: s, Multi: true, Null: true})
 	return q
 }
 
@@ -368,7 +368,7 @@ func (q *AdgangsAdresseQuery) Politikredskode(s ...string) *AdgangsAdresseQuery 
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) Side(i int) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "side", Values: []string{strconv.Itoa(i)}, Multi: false, Null: true})
+	q.add(textQuery{Name: "side", Values: []string{strconv.Itoa(i)}, Multi: false, Null: true})
 	return q
 }
 
@@ -379,12 +379,12 @@ func (q *AdgangsAdresseQuery) Side(i int) *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func (q *AdgangsAdresseQuery) PerSide(i int) *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "per_side", Values: []string{strconv.Itoa(i)}, Multi: false, Null: true})
+	q.add(textQuery{Name: "per_side", Values: []string{strconv.Itoa(i)}, Multi: false, Null: true})
 	return q
 }
 
 // NoFormat will disable extra whitespace. Always enabled when querying
 func (q *AdgangsAdresseQuery) NoFormat() *AdgangsAdresseQuery {
-	q.Add(textQuery{Name: "noformat", Multi: false, Null: true})
+	q.add(textQuery{Name: "noformat", Multi: false, Null: true})
 	return q
 }

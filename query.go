@@ -18,7 +18,13 @@ type query struct {
 	params []parameter
 }
 
-func (q *query) Add(p parameter) {
+// Add a key/value pair as additional parameter. It will be added as key=value on the URL.
+// The values should not be delivered URL-encoded, that will be handled by the library.
+func (q *query) Add(key, value string) {
+	q.add(textQuery{Name: key, Values: []string{value}, Multi: false, Null: true})
+}
+
+func (q *query) add(p parameter) {
 	q.params = append(q.params, p)
 }
 
