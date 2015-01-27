@@ -5,6 +5,7 @@ The dawa package can be used to de-serialize structures received from "Danmarks 
 
 * This package allows to de-serialize JSON responses from the web api into typed structs.
 * The package also allows importing JSON or CSV downloads from the official web page.
+* The package helps you build queries against the official web api.
 
 See the /examples folder for more information.
 
@@ -114,7 +115,7 @@ There is a search API to assist you in building queries for the DAWA Web API.
 
 Currently it supports queries for "adresser" and "adgangsadresser".
 
-You can use a ```dawa.NewAdresseQuery()``` to start a new query. Parameters can be appended to the query, by simply calling the matching functions. For example to get Danmarksgade in Aalborg, use a query like this ``` query := dawa.NewAdresseQuery().Vejnavn("Danmarksgade").Postnr("9000")```.
+You can use a ```dawa.NewAdresseQuery()``` to start a new query. Parameters can be appended to the query, by simply calling the matching functions. For example to get Danmarksgade in Aalborg, use a query like this ```query := dawa.NewAdresseQuery().Vejnavn("Danmarksgade").Postnr("9000")```.
 
 If you want the URL for a query, you can call the .URL() function, but you can also request all results by calling .All(), get an iterator for the results with .Iter(), or just get the first result with .First()
 
@@ -122,7 +123,7 @@ To send multiple query values of the same type, you should specify them in the s
 
 # Query Examples
 Get a single item:
-```
+```Go
 // Search for "Rødkildevej 46"
 item, err := dawa.NewAdgangsAdresseQuery().Vejnavn("Rødkildevej").Husnr("46").First()
 
@@ -142,7 +143,7 @@ fmt.Printf("Got item:%+v\n", item)
 
 
 Get all results from a query:
-```
+```Go
 	iter, err := dawa.NewAdresseQuery().Vejnavn("Rødkildevej").Husnr("46").Iter()
 	if err != nil {
 		panic(err)
