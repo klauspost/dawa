@@ -9,6 +9,7 @@ Running web example:
 go run webapi.go
 go run webapi-stream.go
 go run bynavne-stream.go
+go run query-adresse.go
 ```
 Run file import examples:
 

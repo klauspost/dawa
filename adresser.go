@@ -22,6 +22,7 @@ type Adresse struct {
 
 // AdresseIter is an Iterator that enable you to get individual entries.
 type AdresseIter struct {
+	closer
 	a   chan Adresse
 	err error
 }

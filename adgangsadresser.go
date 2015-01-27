@@ -117,6 +117,7 @@ type VejstykkeRef struct {
 type AdgangsAdresseIter struct {
 	a   chan AdgangsAdresse
 	err error
+	closer
 }
 
 // Next will return addresses.

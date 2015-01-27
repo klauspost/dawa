@@ -108,6 +108,59 @@ The API is similar to the JSON API:
 
 ```
 
+# Queries
+
+There is a search API to assist you in building queries for the DAWA Web API.
+
+Currently it supports queries for "adresser" and "adgangsadresser".
+
+You can use a ```dawa.NewAdresseQuery()``` to start a new query. Parameters can be appended to the query, by simply calling the matching functions. For example to get Danmarksgade in Aalborg, use a query like this ``` query := dawa.NewAdresseQuery().Vejnavn("Danmarksgade").Postnr("9000")```.
+
+If you want the URL for a query, you can call the .URL() function, but you can also request all results by calling .All(), get an iterator for the results with .Iter(), or just get the first result with .First()
+
+To send multiple query values of the same type, you should specify them in the same function call, so if you are looking for "postnr" with values 6400 and 6500 you can use the query ```q := dawa.NewAdresseQuery().Postnr("6400", "6500")```. For values that support this, you can signify a query for an empty value, by simply not sending any parameters, for example ```q := dawa.NewAdresseQuery().Etage()``` will search for values where 'etage' is unset.
+
+# Query Examples
+Get a single item:
+```
+// Search for "Rødkildevej 46"
+item, err := dawa.NewAdgangsAdresseQuery().Vejnavn("Rødkildevej").Husnr("46").First()
+
+// If err is nil, we go a result
+if err == nil {
+	fmt.Printf("Got item:%+v\n", item)
+}
+```
+
+Query where a parameter can have multiple values.
+```Go
+// Search for "Rødkildevej 44,45 and 46"
+item, err := dawa.NewAdgangsAdresseQuery().Vejnavn("Rødkildevej").Husnr("44", "45", "46").All()
+
+fmt.Printf("Got item:%+v\n", item)
+```
+
+
+Get all results from a query:
+```
+	iter, err := dawa.NewAdresseQuery().Vejnavn("Rødkildevej").Husnr("46").Iter()
+	if err != nil {
+		panic(err)
+	}
+
+	for {
+		a, err := iter.Next()
+		if err == io.EOF {
+			iter.Close()
+			break  // we are finished
+		}
+		if err != nil {
+			panic(err)
+		}
+		fmt.Printf("%+v\n", a)
+	}
+```
+
 # License
 
 This code is published under an MIT license. See LICENSE file for more information.

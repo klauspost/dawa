@@ -14,6 +14,30 @@
 // DAWA anvendes til etablering af adressefunktionalitet i it-systemer. Målgruppen for nærværende website er udviklere, som ønsker at indbygge adressefunktionalitet i deres it-systemer.
 package dawa
 
+import (
+	"io"
+)
+
 // modify JSONStrictFieldCheck to return an error on unknown fields on JSON import.
 // If true, return an error if a map in the stream has a key which does not map to any field; else read and discard the key and value in the stream and proceed to the next.
 var JSONStrictFieldCheck = false
+
+type closer struct {
+	c []io.Closer
+}
+
+// Call this when you are finished using the object
+func (c *closer) Close() error {
+	for _, cl := range c.c {
+		err := cl.Close()
+		if err != nil {
+			return err
+		}
+	}
+	c.c = nil
+	return nil
+}
+
+func (c *closer) AddCloser(a io.Closer) {
+	c.c = append(c.c, a)
+}
