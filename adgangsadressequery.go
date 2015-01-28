@@ -160,8 +160,8 @@ func (q *AdgangsAdresseQuery) Kvh(s string) *AdgangsAdresseQuery {
 // AdgangsAdresser med status "2" eller "4" er ikke med i DAWA.
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
-func (q *AdgangsAdresseQuery) Status(s string) *AdgangsAdresseQuery {
-	q.add(textQuery{Name: "status", Values: []string{s}, Multi: false, Null: false})
+func (q *AdgangsAdresseQuery) Status(i int) *AdgangsAdresseQuery {
+	q.add(textQuery{Name: "status", Values: []string{strconv.Itoa(i)}, Multi: false, Null: false})
 	return q
 }
 

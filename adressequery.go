@@ -193,8 +193,8 @@ func (q *AdresseQuery) Kvhx(s string) *AdresseQuery {
 // Adresser med status "2" eller "4" er ikke med i DAWA.
 //
 // See documentation at http://dawa.aws.dk/adressedok#adressesoegning
-func (q *AdresseQuery) Status(s string) *AdresseQuery {
-	q.add(textQuery{Name: "status", Values: []string{s}, Multi: false, Null: false})
+func (q *AdresseQuery) Status(i int) *AdresseQuery {
+	q.add(textQuery{Name: "status", Values: []string{strconv.Itoa(i)}, Multi: false, Null: false})
 	return q
 }
 
