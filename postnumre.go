@@ -19,6 +19,7 @@ type Postnummer struct {
 type PostnummerIter struct {
 	a   chan Postnummer
 	err error
+	closer
 }
 
 // Next will return addresses.
