@@ -16,21 +16,21 @@ import (
 //				fmt.Printf("Got item:%+v\n", item)
 //			}
 type AdresseQuery struct {
-	query
+	queryGeoJSON
 }
 
 // NewAdresseQuery returns a new query for 'adresse objects for searching DAWA.
 //
 // See documentation at http://dawa.aws.dk/adressedok#adressesoegning
 func NewAdresseQuery() *AdresseQuery {
-	return &AdresseQuery{query: query{host: DefaultHost, path: "/adresser"}}
+	return &AdresseQuery{queryGeoJSON: queryGeoJSON{query: query{host: DefaultHost, path: "/adresser"}}}
 }
 
 // NewAdresseComplete returns a new query for 'adresse' objects for searching DAWA with autocomplete.
 //
 // See documentation at http://dawa.aws.dk/adressedok#adresseautocomplete
 func NewAdresseComplete() *AdresseQuery {
-	return &AdresseQuery{query: query{host: DefaultHost, path: "/adresser/autocomplete"}}
+	return &AdresseQuery{queryGeoJSON: queryGeoJSON{query: query{host: DefaultHost, path: "/adresser/autocomplete"}}}
 }
 
 // GetAdresseID will return a single Adresse with the specified ID.

@@ -16,21 +16,21 @@ import (
 //				fmt.Printf("Got item:%+v\n", item)
 //			}
 type AdgangsAdresseQuery struct {
-	query
+	queryGeoJSON
 }
 
 // NewAdgangsAdresseQuery returns a new query for 'adgangsadresser objects for searching DAWA.
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adressesoegning
 func NewAdgangsAdresseQuery() *AdgangsAdresseQuery {
-	return &AdgangsAdresseQuery{query: query{host: DefaultHost, path: "/adgangsadresser"}}
+	return &AdgangsAdresseQuery{queryGeoJSON: queryGeoJSON{query: query{host: DefaultHost, path: "/adgangsadresser"}}}
 }
 
 // NewAdgangsAdresseQuery returns a new query for 'adgangsadresser' objects for searching DAWA with autocomplete.
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adresseautocomplete
 func NewAdgangsAdresseComplete() *AdgangsAdresseQuery {
-	return &AdgangsAdresseQuery{query: query{host: DefaultHost, path: "/adgangsadresser/autocomplete"}}
+	return &AdgangsAdresseQuery{queryGeoJSON: queryGeoJSON{query: query{host: DefaultHost, path: "/adgangsadresser/autocomplete"}}}
 }
 
 // GetAAID will return a single AdgangsAdresse with the specified ID.

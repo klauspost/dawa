@@ -3,6 +3,7 @@ package dawa
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/kpawlik/geojson"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -21,6 +22,10 @@ type query struct {
 	host   string
 	path   string
 	params []parameter
+}
+
+type queryGeoJSON struct {
+	query
 }
 
 // Add a key/value pair as additional parameter. It will be added as key=value on the URL.
@@ -120,4 +125,35 @@ func (q query) Request() (io.ReadCloser, error) {
 	rerr := RequestError{URL: url}
 	e2 = json.Unmarshal(u, &rerr)
 	return nil, rerr
+}
+
+// Perform the Request, and return the request result as a geojson featurecollection.
+// If an error occurs during the request, or an error is reported
+// this is returned.
+// In some cases the error will be a RequestError type.
+func (q queryGeoJSON) GeoJSON() (*geojson.FeatureCollection, error) {
+	q.Add("format", "geojson")
+	url := q.URL()
+	resp, err := http.Get(q.URL())
+	if err != nil {
+		return nil, err
+	}
+
+	u, err := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
+	if err != nil || len(u) == 0 {
+		return nil, fmt.Errorf("Error with request %s", url)
+	}
+
+	if resp.StatusCode >= 400 {
+		rerr := RequestError{URL: url}
+		_ = json.Unmarshal(u, &rerr)
+		return nil, rerr
+	}
+	var fc geojson.FeatureCollection
+	err = json.Unmarshal(u, &fc)
+	if err != nil {
+		return nil, err
+	}
+	return &fc, nil
 }
