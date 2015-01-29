@@ -1,6 +1,11 @@
 package dawa
 
 import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"net/http"
 	"net/url"
 )
 
@@ -78,4 +83,41 @@ func (t textQuery) Param() string {
 		}
 	}
 	return out
+}
+
+type RequestError struct {
+	Type    string        `json:"type"`
+	Title   string        `json:"title"`
+	Details []interface{} `json:"details"`
+	URL     string
+}
+
+func (r RequestError) Error() string {
+	if r.Type == "" {
+		return fmt.Sprintf("Error with request %s", r.URL)
+	}
+	return fmt.Sprintf("%s:%s. Details:%v. Request URL:%s", r.Type, r.Title, r.Details, r.URL)
+}
+
+// Perform the Request, and return the request result.
+// If an error occurs during the request, or an error is reported
+// this is returned.
+// In some cases the error will be a RequestError type.
+func (q query) Request() (io.ReadCloser, error) {
+	url := q.URL()
+	resp, err := http.Get(q.URL())
+	if err != nil {
+		return nil, err
+	}
+	if resp.StatusCode < 400 {
+		return resp.Body, nil
+	}
+	u, e2 := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
+	if e2 != nil || len(u) == 0 {
+		return nil, fmt.Errorf("Error with request %s", url)
+	}
+	rerr := RequestError{URL: url}
+	e2 = json.Unmarshal(u, &rerr)
+	return nil, rerr
 }

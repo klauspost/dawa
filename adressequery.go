@@ -2,7 +2,6 @@ package dawa
 
 import (
 	"io"
-	"net/http"
 	"strconv"
 )
 
@@ -62,29 +61,30 @@ func GetAdresseID(id string) (*Adresse, error) {
 //			}
 //		}
 func (q AdresseQuery) Iter() (*AdresseIter, error) {
-	resp, err := http.Get(q.NoFormat().URL())
+	resp, err := q.NoFormat().Request()
 	if err != nil {
 		return nil, err
 	}
 
-	iter, err := ImportAdresserJSON(resp.Body)
+	iter, err := ImportAdresserJSON(resp)
 	if err != nil {
 		return nil, err
 	}
-	iter.AddCloser(resp.Body)
+	iter.AddCloser(resp)
 	return iter, nil
 }
 
 // All returns all results as an array.
 func (q AdresseQuery) All() ([]Adresse, error) {
-	resp, err := http.Get(q.NoFormat().URL())
+	resp, err := q.NoFormat().Request()
+
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer resp.Close()
 
 	ret := make([]Adresse, 0)
-	iter, err := ImportAdresserJSON(resp.Body)
+	iter, err := ImportAdresserJSON(resp)
 	if err != nil {
 		return nil, err
 	}
@@ -109,13 +109,13 @@ func (q AdresseQuery) All() ([]Adresse, error) {
 //
 // Will return (nil, io.EOF) if there is no results.
 func (q AdresseQuery) First() (*Adresse, error) {
-	resp, err := http.Get(q.NoFormat().URL())
+	resp, err := q.NoFormat().Request()
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer resp.Close()
 
-	iter, err := ImportAdresserJSON(resp.Body)
+	iter, err := ImportAdresserJSON(resp)
 	if err != nil {
 		return nil, err
 	}

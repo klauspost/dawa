@@ -2,7 +2,6 @@ package dawa
 
 import (
 	"io"
-	"net/http"
 	"strconv"
 )
 
@@ -62,29 +61,29 @@ func GetAAID(id string) (*AdgangsAdresse, error) {
 //			}
 //		}
 func (q AdgangsAdresseQuery) Iter() (*AdgangsAdresseIter, error) {
-	resp, err := http.Get(q.NoFormat().URL())
+	resp, err := q.NoFormat().Request()
 	if err != nil {
 		return nil, err
 	}
 
-	iter, err := ImportAdgangsAdresserJSON(resp.Body)
+	iter, err := ImportAdgangsAdresserJSON(resp)
 	if err != nil {
 		return nil, err
 	}
-	iter.AddCloser(resp.Body)
+	iter.AddCloser(resp)
 	return iter, nil
 }
 
 // All returns all results as an array.
 func (q AdgangsAdresseQuery) All() ([]AdgangsAdresse, error) {
-	resp, err := http.Get(q.NoFormat().URL())
+	resp, err := q.NoFormat().Request()
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer resp.Close()
 
 	ret := make([]AdgangsAdresse, 0)
-	iter, err := ImportAdgangsAdresserJSON(resp.Body)
+	iter, err := ImportAdgangsAdresserJSON(resp)
 	if err != nil {
 		return nil, err
 	}
@@ -109,13 +108,13 @@ func (q AdgangsAdresseQuery) All() ([]AdgangsAdresse, error) {
 //
 // Will return (nil, io.EOF) if there is no results.
 func (q AdgangsAdresseQuery) First() (*AdgangsAdresse, error) {
-	resp, err := http.Get(q.NoFormat().URL())
+	resp, err := q.NoFormat().Request()
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer resp.Close()
 
-	iter, err := ImportAdgangsAdresserJSON(resp.Body)
+	iter, err := ImportAdgangsAdresserJSON(resp)
 	if err != nil {
 		return nil, err
 	}
