@@ -113,6 +113,18 @@ type VejstykkeRef struct {
 	Navn string `json:"navn"` // Vejnavn. Der skelnes mellem store og små bogstaver.
 }
 
+type AdgangsAdresseRef struct {
+	Href string `json:"href"` // AdgangsAdressens unikke URL
+	ID   string `json:"id"`   // Adgangsadressens unikke UUID.
+}
+
+// Get the assosiated AdgangsAdresse.
+// Uses the ID field.
+// Will return nil if the item cannot be retrieved.
+func (a AdgangsAdresseRef) Get() (*AdgangsAdresse, error) {
+	return GetAAID(a.ID)
+}
+
 // AdgangsAdresse is an Iterator that enable you to get individual entries.
 type AdgangsAdresseIter struct {
 	a   chan AdgangsAdresse

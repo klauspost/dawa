@@ -34,6 +34,12 @@ func NewAdgangsAdresseComplete() *AdgangsAdresseQuery {
 	return &AdgangsAdresseQuery{query: query{host: DefaultHost, path: "/adgangsadresser/autocomplete"}}
 }
 
+// GetAAID will return a single AdgangsAdresse with the specified ID.
+// Will return (nil, io.EOF) if there is no results.
+func GetAAID(id string) (*AdgangsAdresse, error) {
+	return NewAdgangsAdresseQuery().ID(id).First()
+}
+
 // Iter will return an iterator that allows you to read the results
 // one by one.
 //
