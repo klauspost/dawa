@@ -27,11 +27,17 @@ func NewAdresseQuery() *AdresseQuery {
 	return &AdresseQuery{query: query{host: DefaultHost, path: "/adresser"}}
 }
 
-// NewAdresseQuery returns a new query for 'adresse' objects for searching DAWA with autocomplete.
+// NewAdresseComplete returns a new query for 'adresse' objects for searching DAWA with autocomplete.
 //
 // See documentation at http://dawa.aws.dk/adressedok#adresseautocomplete
 func NewAdresseComplete() *AdresseQuery {
 	return &AdresseQuery{query: query{host: DefaultHost, path: "/adresser/autocomplete"}}
+}
+
+// GetAdresseID will return a single Adresse with the specified ID.
+// Will return (nil, io.EOF) if there is no results.
+func GetAdresseID(id string) (*Adresse, error) {
+	return NewAdresseQuery().ID(id).First()
 }
 
 // Iter will return an iterator that allows you to read the results
