@@ -2,13 +2,10 @@ package dawa
 
 import (
 	"bufio"
-
-	"github.com/ugorji/go/codec"
-
-	"io"
-
 	"encoding/json"
 	"fmt"
+	"github.com/ugorji/go/codec"
+	"io"
 	"io/ioutil"
 	"reflect"
 	"strconv"
@@ -27,7 +24,7 @@ type ListQuery struct {
 
 // ListQuery returns query item for searching DAWA for specific list types.
 //
-// Supported list types are "regioner","sogne","retskredse","politikredse","opstillingskredse","valglandsdele","ejerlav".
+// Supported list types are "regioner","sogne","retskredse","politikredse","opstillingskredse","valglandsdele","ejerlav", "adgangsadresser", "adresser" or "postnumre".
 // Use the corresponding iterator function, for instance i.NextRegion() to get typed results.
 //
 // See 'examples/query-list.go' for a usage example.
@@ -144,6 +141,12 @@ func (q ListQuery) Type() interface{} {
 		return &Valglandsdel{}
 	case "ejerlav":
 		return &Ejerlav{}
+	case "adgangsadresser":
+		return &AdgangsAdresse{}
+	case "adresser":
+		return &Adresse{}
+	case "postnumre":
+		return &Postnummer{}
 	}
 	return nil
 }
@@ -261,6 +264,45 @@ func (a *ListIter) NextEjerlav() (*Ejerlav, error) {
 		return nil, a.err
 	}
 	return item.(*Ejerlav), nil
+}
+
+// NextAdgangsAdresse will return the next item.
+// The query must be built using the corresponding type. See NewListQuery() function.
+func (a *ListIter) NextAdgangsAdresse() (*AdgangsAdresse, error) {
+	if !a.eType.ConvertibleTo(reflect.TypeOf(&AdgangsAdresse{})) {
+		return nil, fmt.Errorf("Wrong type requested from iterator. Expected %s", a.eType.String())
+	}
+	item, err := a.Next()
+	if err != nil {
+		return nil, a.err
+	}
+	return item.(*AdgangsAdresse), nil
+}
+
+// NextAdresse will return the next item.
+// The query must be built using the corresponding type. See NewListQuery() function.
+func (a *ListIter) NextAdresse() (*Adresse, error) {
+	if !a.eType.ConvertibleTo(reflect.TypeOf(&Adresse{})) {
+		return nil, fmt.Errorf("Wrong type requested from iterator. Expected %s", a.eType.String())
+	}
+	item, err := a.Next()
+	if err != nil {
+		return nil, a.err
+	}
+	return item.(*Adresse), nil
+}
+
+// NextPostnummer will return the next item.
+// The query must be built using the corresponding type. See NewListQuery() function.
+func (a *ListIter) NextPostnummer() (*Postnummer, error) {
+	if !a.eType.ConvertibleTo(reflect.TypeOf(&Postnummer{})) {
+		return nil, fmt.Errorf("Wrong type requested from iterator. Expected %s", a.eType.String())
+	}
+	item, err := a.Next()
+	if err != nil {
+		return nil, a.err
+	}
+	return item.(*Postnummer), nil
 }
 
 // NewReverseQuery will create a reverse location to item lookup. Parameters are:
