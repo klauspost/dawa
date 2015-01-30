@@ -10,6 +10,9 @@ go run webapi.go
 go run webapi-stream.go
 go run bynavne-stream.go
 go run query-adresse.go
+go run query-list-reverse.go
+go run query-list.go
+go run query-adresse-geojson.go
 ```
 Run file import examples:
 
