@@ -66,6 +66,27 @@ The library also supplies streaming decoders for an array of responses:
 	}
 
 ```
+If you would like to have help in building queries for the web API, there are query builders for each data type. For instance to execute the query above, you can do it like this:
+```Go
+	// Get the matching adgangsadresser
+	iter, _ := dawa.NewAdgangsAdresseQuery().Husnr("14").Postnr("9000").Iter()
+
+	// Read responses one by one
+	for {
+		address, err := iter.Next()
+		if err == io.EOF {
+			break
+		}
+		// 'address' now contains an 'Adgangsadresse'
+	}
+
+```
+To get all results in a single array is a simple oneliner:
+```Go
+	// Get the matching adgangsadresser
+	results, _ := dawa.NewAdgangsAdresseQuery().Husnr("14").Postnr("9000").All()
+```
+
 
 The same API is used to decode content from files downloaded from http://download.aws.dk/
 
@@ -127,8 +148,14 @@ Get a single item:
 // Search for "Rødkildevej 46"
 item, err := dawa.NewAdgangsAdresseQuery().Vejnavn("Rødkildevej").Husnr("46").First()
 
-// If err is nil, we go a result
-if err == nil {
+// If io.EOF, there were no results.
+if err == io.EOF {
+	fmt.Printf("No results")
+} else if err != nil {
+	// There was another error
+	fmt.Printf("Error:%s", err.Error())
+} else {
+	// We got a result
 	fmt.Printf("Got item:%+v\n", item)
 }
 ```
@@ -161,6 +188,14 @@ Get all results from a query:
 		fmt.Printf("%+v\n", a)
 	}
 ```
+
+You can get the results as GeoJSON by using the GeoJSON function on any query:
+```Go
+geoj, err := dawa.NewAdgangsAdresseQuery().Vejnavn("Rødkildevej").Husnr("44").GeoJSON()
+fmt.Printf("Got location:%+v\n", geoj)
+```
+See ```examples/query-adresse-geojson.go``` on how to parse the result.
+
 
 # License
 
