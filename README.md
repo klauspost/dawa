@@ -196,6 +196,23 @@ fmt.Printf("Got location:%+v\n", geoj)
 ```
 See ```examples/query-adresse-geojson.go``` on how to parse the result.
 
+You can do *reverse geocoding* lookups by using the generic NewReverseQuery function, like this:
+
+```Go
+	// Ask for adgangsadresse at 12.5851471984198 y=55.6832383751223
+	iter, _ := dawa.NewReverseQuery("adgangsadresser", 12.5851471984198, 55.6832383751223, "")
+
+	// Close the iterator when done.
+	defer iter.Close()
+
+	// Iterate the results. (We should get only one, though)
+	for {
+		// The iter.NextXXXXX() type must match the type in NewReverseQuery().
+		item, _ := iter.NextAdgangsAdresse()
+		fmt.Printf("Result:\n%#v\n", item)
+	}
+```
+For a complete example with error checking, see ```examples/query-list-reverse.go```
 
 # License
 
