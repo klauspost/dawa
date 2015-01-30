@@ -16,7 +16,7 @@ type Vejstykke struct {
 	Historik         Historik        `json:"historik"`         // Væsentlige tidspunkter for vejstykket
 	Href             string          `json:"href"`             // Vejstykkets unikke URL.
 	Kode             string          `json:"kode"`             // Identifikation af vejstykke. Er unikt indenfor den pågældende kommune. Repræsenteret ved fire cifre. Eksempel: I Københavns kommune er ”0004” lig ”Abel Cathrines Gade”.
-	Kommune          Kommune         `json:"kommune"`          // Kommunen som vejstykket er beliggende i.
+	Kommune          KommuneRef      `json:"kommune"`          // Kommunen som vejstykket er beliggende i.
 	Navn             string          `json:"navn"`             // Vejens navn som det er fastsat og registreret af kommunen. Repræsenteret ved indtil 40 tegn. Eksempel: ”Hvidkildevej”.
 	Postnumre        []PostnummerRef `json:"postnumre"`        // Postnummrene som vejstykket er beliggende i.
 }

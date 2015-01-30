@@ -59,8 +59,8 @@ func TestImportPostnumreJSON(t *testing.T) {
 	var json_expect = []Postnummer{
 		Postnummer{
 			Href: "http://dawa.aws.dk/postnumre/9981",
-			Kommuner: []Kommune{
-				Kommune{
+			Kommuner: []KommuneRef{
+				KommuneRef{
 					Href: "http://dawa.aws.dk/kommuner/813",
 					Kode: "0813",
 					Navn: "Frederikshavn",
@@ -72,13 +72,13 @@ func TestImportPostnumreJSON(t *testing.T) {
 		},
 		Postnummer{
 			Href: "http://dawa.aws.dk/postnumre/9982",
-			Kommuner: []Kommune{
-				Kommune{
+			Kommuner: []KommuneRef{
+				KommuneRef{
 					Href: "http://dawa.aws.dk/kommuner/813",
 					Kode: "0813",
 					Navn: "Frederikshavn",
 				},
-				Kommune{
+				KommuneRef{
 					Href: "http://dawa.aws.dk/kommuner/860",
 					Kode: "0860",
 					Navn: "Hjørring",
@@ -90,8 +90,8 @@ func TestImportPostnumreJSON(t *testing.T) {
 		},
 		Postnummer{
 			Href: "http://dawa.aws.dk/postnumre/9990",
-			Kommuner: []Kommune{
-				Kommune{
+			Kommuner: []KommuneRef{
+				KommuneRef{
 					Href: "http://dawa.aws.dk/kommuner/813",
 					Kode: "0813",
 					Navn: "Frederikshavn",

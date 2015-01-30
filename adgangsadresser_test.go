@@ -46,19 +46,19 @@ func TestImportAdgangsAdresserCSV(t *testing.T) {
 			Href:  "",
 			Husnr: "3A",
 			ID:    "0a3f507a-3669-32b8-e044-0003ba298018",
-			Kommune: Kommune{
+			Kommune: KommuneRef{
 				Href: "",
 				Kode: "0101",
 				Navn: "København",
 			},
 			Kvh:        "",
 			Matrikelnr: "377",
-			Opstillingskreds: Opstillingskreds{
+			Opstillingskreds: OpstillingskredsRef{
 				Href: "",
 				Kode: "0009",
 				Navn: "Vesterbro",
 			},
-			Politikreds: Politikreds{
+			Politikreds: PolitikredsRef{
 				Href: "",
 				Kode: "1470",
 				Navn: "Københavns Politi",
@@ -73,12 +73,12 @@ func TestImportAdgangsAdresserCSV(t *testing.T) {
 				Kode: "1084",
 				Navn: "Region Hovedstaden",
 			},
-			Retskreds: Retskreds{
+			Retskreds: RetskredsRef{
 				Href: "",
 				Kode: "1101",
 				Navn: "Københavns Byret",
 			},
-			Sogn: Sogn{
+			Sogn: SognRef{
 				Href: "",
 				Kode: "9185",
 				Navn: "Vesterbro",
@@ -383,19 +383,19 @@ func TestImportAdgangsAdresserJSON(t *testing.T) {
 			Href:  "http://dawa.aws.dk/adgangsadresser/0a3f507a-3669-32b8-e044-0003ba298018",
 			Husnr: "3A",
 			ID:    "0a3f507a-3669-32b8-e044-0003ba298018",
-			Kommune: Kommune{
+			Kommune: KommuneRef{
 				Href: "http://dawa.aws.dk/kommuner/101",
 				Kode: "0101",
 				Navn: "København",
 			},
 			Kvh:        "01010004__3A",
 			Matrikelnr: "377",
-			Opstillingskreds: Opstillingskreds{
+			Opstillingskreds: OpstillingskredsRef{
 				Href: "http://dawa.aws.dk/opstillingskredse/9",
 				Kode: "0009",
 				Navn: "Vesterbro",
 			},
-			Politikreds: Politikreds{
+			Politikreds: PolitikredsRef{
 				Href: "http://dawa.aws.dk/politikredse/1470",
 				Kode: "1470",
 				Navn: "Københavns Politi",
@@ -410,12 +410,12 @@ func TestImportAdgangsAdresserJSON(t *testing.T) {
 				Kode: "1084",
 				Navn: "Region Hovedstaden",
 			},
-			Retskreds: Retskreds{
+			Retskreds: RetskredsRef{
 				Href: "http://dawa.aws.dk/retskredse/1101",
 				Kode: "1101",
 				Navn: "Københavns Byret",
 			},
-			Sogn: Sogn{
+			Sogn: SognRef{
 				Href: "http://dawa.aws.dk/sogne/9185",
 				Kode: "9185",
 				Navn: "Vesterbro",

@@ -87,7 +87,7 @@ func TestImportVejstykkerJSON(t *testing.T) {
 			},
 			Href: "http://dawa.aws.dk/vejstykker/563/9369",
 			Kode: "9369",
-			Kommune: Kommune{
+			Kommune: KommuneRef{
 				Href: "http://dawa.aws.dk/kommuner/563",
 				Kode: "0563",
 				Navn: "Fanø",
@@ -109,7 +109,7 @@ func TestImportVejstykkerJSON(t *testing.T) {
 			},
 			Href: "http://dawa.aws.dk/vejstykker/563/9379",
 			Kode: "9379",
-			Kommune: Kommune{
+			Kommune: KommuneRef{
 				Href: "http://dawa.aws.dk/kommuner/563",
 				Kode: "0563",
 				Navn: "Fanø",
@@ -131,7 +131,7 @@ func TestImportVejstykkerJSON(t *testing.T) {
 			},
 			Href: "http://dawa.aws.dk/vejstykker/563/9389",
 			Kode: "9389",
-			Kommune: Kommune{
+			Kommune: KommuneRef{
 				Href: "http://dawa.aws.dk/kommuner/563",
 				Kode: "0563",
 				Navn: "Fanø",

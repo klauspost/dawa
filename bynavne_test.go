@@ -66,9 +66,9 @@ var suppl_bynavn_json_input = `
 func TestImportSupplBynavnJSON(t *testing.T) {
 	// We test one entry only to match
 	var json_expect = []SupplBynavn{
-		SupplBynavn{Navn: "Åvang", Href: "http://dawa.aws.dk/supplerendebynavne/%C3%85vang", Kommuner: []Kommune{Kommune{Href: "http://dawa.aws.dk/kommuner/350", Kode: "0350", Navn: "Lejre"}}, Postnumre: []PostnummerRef{PostnummerRef{Href: "http://dawa.aws.dk/postnumre/4320", Navn: "Lejre", Nr: "4320"}}},
-		SupplBynavn{Navn: "Aavang", Href: "http://dawa.aws.dk/supplerendebynavne/Aavang", Kommuner: []Kommune{Kommune{Href: "http://dawa.aws.dk/kommuner/350", Kode: "0350", Navn: "Lejre"}}, Postnumre: []PostnummerRef{PostnummerRef{Href: "http://dawa.aws.dk/postnumre/4320", Navn: "Lejre", Nr: "4320"}}},
-		SupplBynavn{Navn: "Åved", Href: "http://dawa.aws.dk/supplerendebynavne/%C3%85ved", Kommuner: []Kommune{Kommune{Href: "http://dawa.aws.dk/kommuner/550", Kode: "0550", Navn: "Tønder"}}, Postnumre: []PostnummerRef{PostnummerRef{Href: "http://dawa.aws.dk/postnumre/6780", Navn: "Skærbæk", Nr: "6780"}}},
+		SupplBynavn{Navn: "Åvang", Href: "http://dawa.aws.dk/supplerendebynavne/%C3%85vang", Kommuner: []KommuneRef{KommuneRef{Href: "http://dawa.aws.dk/kommuner/350", Kode: "0350", Navn: "Lejre"}}, Postnumre: []PostnummerRef{PostnummerRef{Href: "http://dawa.aws.dk/postnumre/4320", Navn: "Lejre", Nr: "4320"}}},
+		SupplBynavn{Navn: "Aavang", Href: "http://dawa.aws.dk/supplerendebynavne/Aavang", Kommuner: []KommuneRef{KommuneRef{Href: "http://dawa.aws.dk/kommuner/350", Kode: "0350", Navn: "Lejre"}}, Postnumre: []PostnummerRef{PostnummerRef{Href: "http://dawa.aws.dk/postnumre/4320", Navn: "Lejre", Nr: "4320"}}},
+		SupplBynavn{Navn: "Åved", Href: "http://dawa.aws.dk/supplerendebynavne/%C3%85ved", Kommuner: []KommuneRef{KommuneRef{Href: "http://dawa.aws.dk/kommuner/550", Kode: "0550", Navn: "Tønder"}}, Postnumre: []PostnummerRef{PostnummerRef{Href: "http://dawa.aws.dk/postnumre/6780", Navn: "Skærbæk", Nr: "6780"}}},
 	}
 
 	b := bytes.NewBuffer([]byte(suppl_bynavn_json_input))

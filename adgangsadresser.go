@@ -14,27 +14,27 @@ import (
 // Forskellen på en adresse og en adgangsadresse er at adressen rummer
 // eventuel etage- og/eller dørbetegnelse. Det gør adgangsadressen ikke.
 type AdgangsAdresse struct {
-	DDKN              DDKN             `json:"DDKN"`              // Adressens placering i Det Danske Kvadratnet (DDKN).
-	Adgangspunkt      Adgangspunkt     `json:"adgangspunkt"`      // Geografisk punkt, som angiver særskilt adgang fra navngiven vej ind på et areal eller bygning.
-	Ejerlav           Ejerlav          `json:"ejerlav"`           // Det matrikulære ejerlav som adressen ligger i.
-	EsrEjendomsNr     string           `json:"esrejendomsnr"`     // ESR Ejendomsnummer. Indtil 7 cifre.
-	Historik          Historik         `json:"historik"`          // Væsentlige tidspunkter for adgangsadressen
-	Href              string           `json:"href"`              // Adgangsadressens URL.
-	Husnr             string           `json:"husnr"`             // Husnummer. Max 4 cifre eventuelt med et efterfølgende bogstav.
-	ID                string           `json:"id"`                // Adgangsadressens unikke id, f.eks. 0a3f5095-45ec-32b8-e044-0003ba298018
-	Kommune           Kommune          `json:"kommune"`           // Kommunen som adressen er beliggende i.
-	Kvh               string           `json:"kvh"`               // KVH-nøgle. 12 tegn bestående af 4 cifre der repræsenterer kommunekode, 4 cifre der repræsenterer vejkode efterfulgt af 4 tegn der repræsenter husnr
-	Matrikelnr        string           `json:"matrikelnr"`        // Matrikelnummer. Unikt indenfor et ejerlav.
-	Opstillingskreds  Opstillingskreds `json:"opstillingskreds"`  // Opstillingskresen som adressen er beliggende i. Beregnes udfra adgangspunktet og opstillingskredsinddelingerne fra DAGI
-	Politikreds       Politikreds      `json:"politikreds"`       // Politikredsen som adressen er beliggende i. Beregnes udfra adgangspunktet og politikredsinddelingerne fra DAGI
-	Postnummer        PostnummerRef    `json:"postnummer"`        // Postnummeret som adressen er beliggende i.
-	Region            Region           `json:"region"`            // Regionen som adressen er beliggende i. Beregnes udfra adgangspunktet og regionsinddelingerne fra DAGI
-	Retskreds         Retskreds        `json:"retskreds"`         // Retskredsen som adressen er beliggende i. Beregnes udfra adgangspunktet og retskredsinddelingerne fra DAGI
-	Sogn              Sogn             `json:"sogn"`              // Sognet som adressen er beliggende i. Beregnes udfra adgangspunktet og sogneinddelingerne fra DAGI
-	Status            int              `json:"status"`            // Adressens status, som modtaget fra BBR. "1" angiver en endelig adresse og "3" angiver en foreløbig adresse". Adresser med status "2" eller "4" er ikke med i DAWA.
-	SupplerendeBynavn string           `json:"supplerendebynavn"` // Et supplerende bynavn – typisk landsbyens navn – eller andet lokalt stednavn, der er fastsat af kommunen for at præcisere adressens beliggenhed indenfor postnummeret.
-	Vejstykke         VejstykkeRef     `json:"vejstykke"`         // Vejstykket som adressen er knyttet til.
-	Zone              string           `json:"zone"`              // Hvilken zone adressen ligger i. "Byzone", "Sommerhusområde" eller "Landzone". Beregnes udfra adgangspunktet og zoneinddelingerne fra PlansystemDK
+	DDKN              DDKN                `json:"DDKN"`              // Adressens placering i Det Danske Kvadratnet (DDKN).
+	Adgangspunkt      Adgangspunkt        `json:"adgangspunkt"`      // Geografisk punkt, som angiver særskilt adgang fra navngiven vej ind på et areal eller bygning.
+	Ejerlav           Ejerlav             `json:"ejerlav"`           // Det matrikulære ejerlav som adressen ligger i.
+	EsrEjendomsNr     string              `json:"esrejendomsnr"`     // ESR Ejendomsnummer. Indtil 7 cifre.
+	Historik          Historik            `json:"historik"`          // Væsentlige tidspunkter for adgangsadressen
+	Href              string              `json:"href"`              // Adgangsadressens URL.
+	Husnr             string              `json:"husnr"`             // Husnummer. Max 4 cifre eventuelt med et efterfølgende bogstav.
+	ID                string              `json:"id"`                // Adgangsadressens unikke id, f.eks. 0a3f5095-45ec-32b8-e044-0003ba298018
+	Kommune           KommuneRef          `json:"kommune"`           // Kommunen som adressen er beliggende i.
+	Kvh               string              `json:"kvh"`               // KVH-nøgle. 12 tegn bestående af 4 cifre der repræsenterer kommunekode, 4 cifre der repræsenterer vejkode efterfulgt af 4 tegn der repræsenter husnr
+	Matrikelnr        string              `json:"matrikelnr"`        // Matrikelnummer. Unikt indenfor et ejerlav.
+	Opstillingskreds  OpstillingskredsRef `json:"opstillingskreds"`  // Opstillingskresen som adressen er beliggende i. Beregnes udfra adgangspunktet og opstillingskredsinddelingerne fra DAGI
+	Politikreds       PolitikredsRef      `json:"politikreds"`       // Politikredsen som adressen er beliggende i. Beregnes udfra adgangspunktet og politikredsinddelingerne fra DAGI
+	Postnummer        PostnummerRef       `json:"postnummer"`        // Postnummeret som adressen er beliggende i.
+	Region            Region              `json:"region"`            // Regionen som adressen er beliggende i. Beregnes udfra adgangspunktet og regionsinddelingerne fra DAGI
+	Retskreds         RetskredsRef        `json:"retskreds"`         // Retskredsen som adressen er beliggende i. Beregnes udfra adgangspunktet og retskredsinddelingerne fra DAGI
+	Sogn              SognRef             `json:"sogn"`              // Sognet som adressen er beliggende i. Beregnes udfra adgangspunktet og sogneinddelingerne fra DAGI
+	Status            int                 `json:"status"`            // Adressens status, som modtaget fra BBR. "1" angiver en endelig adresse og "3" angiver en foreløbig adresse". Adresser med status "2" eller "4" er ikke med i DAWA.
+	SupplerendeBynavn string              `json:"supplerendebynavn"` // Et supplerende bynavn – typisk landsbyens navn – eller andet lokalt stednavn, der er fastsat af kommunen for at præcisere adressens beliggenhed indenfor postnummeret.
+	Vejstykke         VejstykkeRef        `json:"vejstykke"`         // Vejstykket som adressen er knyttet til.
+	Zone              string              `json:"zone"`              // Hvilken zone adressen ligger i. "Byzone", "Sommerhusområde" eller "Landzone". Beregnes udfra adgangspunktet og zoneinddelingerne fra PlansystemDK
 }
 
 // Adressens placering i Det Danske Kvadratnet (DDKN).
@@ -42,6 +42,12 @@ type DDKN struct {
 	Km1  string `json:"km1"`
 	Km10 string `json:"km10"`
 	M100 string `json:"m100"`
+}
+
+type ChangeInfo struct {
+	Ændret     string  `json:"ændret"`      // Tidspunkt for seneste ændring registreret i DAWA. Opdateres ikke hvis ændringen kun vedrører geometrien (se felterne geo_ændret og geo_version).
+	GeoVersion float64 `json:"geo_version"` // Versionsangivelse for geometrien. Inkrementeres hver gang geometrien ændrer sig i DAWA.
+	GeoÆndret  string  `json:"geo_ændret"`  // Tidspunkt for seneste ændring af geometrien registreret i DAWA.
 }
 
 // Geografisk punkt, som angiver særskilt adgang fra navngiven vej ind på et areal eller bygning.
@@ -55,6 +61,7 @@ type Adgangspunkt struct {
 }
 
 type Ejerlav struct {
+	Href string `json:"href"` // Ejerlavets unikke URL
 	Kode int    `json:"kode"` // Unik identifikation af det matrikulære ”ejerlav”, som adressen ligger i. Repræsenteret ved indtil 7 cifre. Eksempel: ”170354” for ejerlavet ”Eskebjerg By, Bregninge”.
 	Navn string `json:"navn"` // Det matrikulære ”ejerlav”s navn. Eksempel: ”Eskebjerg By, Bregninge”.
 }
@@ -64,23 +71,40 @@ type Historik struct {
 	Ændret   AwsTime `json:"ændret"`   // Dato og tid hvor der sidst er ændret i data,
 }
 
-// Kommunen som adressen er beliggende i.
-type Kommune struct {
+// Kommunen som adressen er beliggende i. Reference
+type KommuneRef struct {
 	Href string `json:"href"` // Kommunens unikke URL.
 	Kode string `json:"kode"` // Kommunekoden. 4 cifre.
 	Navn string `json:"navn"` // Kommunens navn.
 }
 
-type Opstillingskreds struct {
+// Kommunen som adressen er beliggende i. Fuldt objekt
+type Kommune struct {
+	KommuneRef
+	ChangeInfo
+	Regionskode string `json:"regionskode"` // Regionskode for den region kommunen er beliggende i. 4 cifre.
+}
+
+type OpstillingskredsRef struct {
 	Href string `json:"href"` // Opstillingskredsens unikke URL
 	Kode string `json:"kode"` // Identifikation af opstillingskredsen.
 	Navn string `json:"navn"` // Opstillingskredsens navn.
 }
 
-type Politikreds struct {
+type Opstillingskreds struct {
+	OpstillingskredsRef
+	ChangeInfo
+}
+type PolitikredsRef struct {
 	Href string `json:"href"` // Politikredsens unikke URL
 	Kode string `json:"kode"` // Identifikation af politikredsen
 	Navn string `json:"navn"` // Politikredsens navn
+}
+
+
+type Politikreds struct {
+	PolitikredsRef
+	ChangeInfo
 }
 
 type PostnummerRef struct {
@@ -95,16 +119,33 @@ type Region struct {
 	Navn string `json:"navn"` // Regionens navn
 }
 
-type Retskreds struct {
+type RetskredsRef struct {
 	Href string `json:"href"` // Retskredsens unikke URL
 	Kode string `json:"kode"` // Identifikation af retskredsen
 	Navn string `json:"navn"` // Retskredsens navn
 }
 
-type Sogn struct {
+type Retskreds struct {
+	RetskredsRef
+	ChangeInfo
+}
+
+type SognRef struct {
 	Href string `json:"href"` // Sognets unikke URL
 	Kode string `json:"kode"` // Identifikation af sognet
 	Navn string `json:"navn"` // Sognets navn
+}
+
+type Sogn struct {
+	SognRef
+	ChangeInfo
+}
+
+type Valglandsdel struct {
+	Bogstav string `json:"bogstav"`
+	Href    string `json:"href"`
+	Navn    string `json:"navn"`
+	ChangeInfo
 }
 
 type VejstykkeRef struct {
