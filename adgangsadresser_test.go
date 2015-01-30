@@ -68,7 +68,7 @@ func TestImportAdgangsAdresserCSV(t *testing.T) {
 				Navn: "København V",
 				Nr:   "1654",
 			},
-			Region: Region{
+			Region: RegionRef{
 				Href: "",
 				Kode: "1084",
 				Navn: "Region Hovedstaden",
@@ -405,7 +405,7 @@ func TestImportAdgangsAdresserJSON(t *testing.T) {
 				Navn: "København V",
 				Nr:   "1654",
 			},
-			Region: Region{
+			Region: RegionRef{
 				Href: "http://dawa.aws.dk/regioner/1084",
 				Kode: "1084",
 				Navn: "Region Hovedstaden",

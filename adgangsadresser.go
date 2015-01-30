@@ -28,7 +28,7 @@ type AdgangsAdresse struct {
 	Opstillingskreds  OpstillingskredsRef `json:"opstillingskreds"`  // Opstillingskresen som adressen er beliggende i. Beregnes udfra adgangspunktet og opstillingskredsinddelingerne fra DAGI
 	Politikreds       PolitikredsRef      `json:"politikreds"`       // Politikredsen som adressen er beliggende i. Beregnes udfra adgangspunktet og politikredsinddelingerne fra DAGI
 	Postnummer        PostnummerRef       `json:"postnummer"`        // Postnummeret som adressen er beliggende i.
-	Region            Region              `json:"region"`            // Regionen som adressen er beliggende i. Beregnes udfra adgangspunktet og regionsinddelingerne fra DAGI
+	Region            RegionRef           `json:"region"`            // Regionen som adressen er beliggende i. Beregnes udfra adgangspunktet og regionsinddelingerne fra DAGI
 	Retskreds         RetskredsRef        `json:"retskreds"`         // Retskredsen som adressen er beliggende i. Beregnes udfra adgangspunktet og retskredsinddelingerne fra DAGI
 	Sogn              SognRef             `json:"sogn"`              // Sognet som adressen er beliggende i. Beregnes udfra adgangspunktet og sogneinddelingerne fra DAGI
 	Status            int                 `json:"status"`            // Adressens status, som modtaget fra BBR. "1" angiver en endelig adresse og "3" angiver en foreløbig adresse". Adresser med status "2" eller "4" er ikke med i DAWA.
@@ -101,7 +101,6 @@ type PolitikredsRef struct {
 	Navn string `json:"navn"` // Politikredsens navn
 }
 
-
 type Politikreds struct {
 	PolitikredsRef
 	ChangeInfo
@@ -113,10 +112,15 @@ type PostnummerRef struct {
 	Nr   string `json:"nr"`   // Postnummer. 4 cifre
 }
 
-type Region struct {
+type RegionRef struct {
 	Href string `json:"href"` // Regionens unikke URL
 	Kode string `json:"kode"` // Identifikation af regionen
 	Navn string `json:"navn"` // Regionens navn
+}
+
+type Region struct {
+	RegionRef
+	ChangeInfo
 }
 
 type RetskredsRef struct {
