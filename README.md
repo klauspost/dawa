@@ -134,9 +134,10 @@ The API is similar to the JSON API:
 
 There is a search API to assist you in building queries for the DAWA Web API.
 
-Currently it supports queries for "adresser" and "adgangsadresser".
+All data types are supported for queries. There are detailed query builders for "adresser", "adgangsadresser" and "postnumre". For the remaining types there is a generic "ListQuery" query builder, which also supports reverse geolocation lookups.
 
-You can use a ```dawa.NewAdresseQuery()``` to start a new query. Parameters can be appended to the query, by simply calling the matching functions. For example to get Danmarksgade in Aalborg, use a query like this ```query := dawa.NewAdresseQuery().Vejnavn("Danmarksgade").Postnr("9000")```.
+You can use a ```dawa.NewAdresseQuery()``` to start a new query. Parameters can be appended to the query, by simply calling the matching functions. For example to get Danmarksgade in Aalborg, use a query like this 
+```query := dawa.NewAdresseQuery().Vejnavn("Danmarksgade").Postnr("9000")```.
 
 If you want the URL for a query, you can call the .URL() function, but you can also request all results by calling .All(), get an iterator for the results with .Iter(), or just get the first result with .First()
 
