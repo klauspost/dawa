@@ -131,7 +131,7 @@ func (q PostnrQuery) First() (*Postnummer, error) {
 //
 // See http://dawa.aws.dk/postnummerdok#postnummersoegning
 func (q *PostnrQuery) Nr(s ...string) *PostnrQuery {
-	q.add(textQuery{Name: "nr", Values: s, Multi: true, Null: false})
+	q.add(&textQuery{Name: "nr", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -141,7 +141,7 @@ func (q *PostnrQuery) Nr(s ...string) *PostnrQuery {
 //
 // See http://dawa.aws.dk/postnummerdok#postnummersoegning
 func (q *PostnrQuery) Navn(s ...string) *PostnrQuery {
-	q.add(textQuery{Name: "navn", Values: s, Multi: true, Null: false})
+	q.add(&textQuery{Name: "navn", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -151,7 +151,7 @@ func (q *PostnrQuery) Navn(s ...string) *PostnrQuery {
 //
 // See http://dawa.aws.dk/postnummerdok#postnummersoegning
 func (q *PostnrQuery) Kommunekode(s ...string) *PostnrQuery {
-	q.add(textQuery{Name: "kommunekode", Values: s, Multi: true, Null: false})
+	q.add(&textQuery{Name: "kommunekode", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -162,7 +162,7 @@ func (q *PostnrQuery) Kommunekode(s ...string) *PostnrQuery {
 //
 // See http://dawa.aws.dk/postnummerdok#postnummersoegning
 func (q *PostnrQuery) Q(s string) *PostnrQuery {
-	q.add(textQuery{Name: "q", Values: []string{s}, Multi: false, Null: true})
+	q.add(&textQuery{Name: "q", Values: []string{s}, Multi: false, Null: true})
 	return q
 }
 
@@ -172,12 +172,12 @@ func (q *PostnrQuery) Q(s string) *PostnrQuery {
 //
 // See http://dawa.aws.dk/postnummerdok#postnummersoegning
 func (q *PostnrQuery) Stormodtagere(b bool) *PostnrQuery {
-	q.add(textQuery{Name: "stormodtagere", Values: []string{fmt.Sprintf("%v", b)}, Multi: false, Null: false})
+	q.add(&textQuery{Name: "stormodtagere", Values: []string{fmt.Sprintf("%v", b)}, Multi: false, Null: false})
 	return q
 }
 
 // NoFormat will disable extra whitespace. Always enabled when querying
 func (q *PostnrQuery) NoFormat() *PostnrQuery {
-	q.add(textQuery{Name: "noformat", Multi: false, Null: true})
+	q.add(&textQuery{Name: "noformat", Multi: false, Null: true})
 	return q
 }

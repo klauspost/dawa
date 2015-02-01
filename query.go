@@ -15,13 +15,18 @@ var DefaultHost = "http://dawa.aws.dk"
 
 type parameter interface {
 	Param() string
+	Key() string
+	IsMulti() bool
+	AllValues() []string
+	Merge(parameter) error
 }
 
 // A generic query structure
 type query struct {
-	host   string
-	path   string
-	params []parameter
+	host     string
+	path     string
+	params   map[string]parameter
+	warnings []error
 }
 
 type queryGeoJSON struct {
@@ -31,11 +36,38 @@ type queryGeoJSON struct {
 // Add a key/value pair as additional parameter. It will be added as key=value on the URL.
 // The values should not be delivered URL-encoded, that will be handled by the library.
 func (q *query) Add(key, value string) {
-	q.add(textQuery{Name: key, Values: []string{value}, Multi: false, Null: true})
+	q.add(&textQuery{Name: key, Values: []string{value}, Multi: false, Null: true})
+}
+
+// This will  return any warnings that may have been generated while building the query.
+func (q query) Warnings() []error {
+	return q.warnings
+}
+
+// Returns true if any warnings have been generated.
+func (q query) HasWarnings() bool {
+	return len(q.warnings) > 0
 }
 
 func (q *query) add(p parameter) {
-	q.params = append(q.params, p)
+	if q.params == nil {
+		q.params = make(map[string]parameter)
+	}
+	key := p.Key()
+	pOld, ok := q.params[key]
+	if ok {
+		if !p.IsMulti() {
+			q.warnings = append(q.warnings, fmt.Errorf("Ignoring second value of key %s", key))
+			return
+		}
+		err := pOld.Merge(p)
+		if err != nil {
+			q.warnings = append(q.warnings, fmt.Errorf("Error while adding second value of key %s:%s", key, err.Error()))
+		}
+		q.params[key] = pOld
+		return
+	}
+	q.params[key] = p
 }
 
 // WithHost allows overriding the host for this query.
@@ -57,11 +89,13 @@ func (q query) URL() string {
 		return out
 	}
 	out += "?"
-	for i, value := range q.params {
+	i := len(q.params) - 1
+	for _, value := range q.params {
 		out += value.Param()
-		if i != len(q.params)-1 {
+		if i > 0 {
 			out += "&"
 		}
+		i--
 	}
 	return out
 }
@@ -73,6 +107,19 @@ type textQuery struct {
 	Null   bool
 }
 
+// Merge other parameters into this one.
+func (t *textQuery) Merge(other parameter) error {
+	if t.Key() != other.Key() {
+		return fmt.Errorf("merge: key value mismatch '%s' != '%s'", t.Key(), other.Key())
+	}
+	if !t.Multi {
+		return fmt.Errorf("merge: cannot merge multiple values of key %s", t.Key())
+	}
+	t.Values = append(t.Values, other.AllValues()...)
+	return nil
+}
+
+// Returns the entire parameter
 func (t textQuery) Param() string {
 	out := url.QueryEscape(t.Name) + "="
 	if t.Null && len(t.Values) == 0 {
@@ -88,6 +135,19 @@ func (t textQuery) Param() string {
 		}
 	}
 	return out
+}
+
+// Return values as string array, unencoded
+func (t textQuery) AllValues() []string {
+	return t.Values
+}
+
+func (t textQuery) Key() string {
+	return t.Name
+}
+
+func (t textQuery) IsMulti() bool {
+	return t.Multi
 }
 
 type RequestError struct {

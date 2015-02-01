@@ -45,7 +45,7 @@ func NewListQuery(listType string, autoComplete bool) *ListQuery {
 //
 // See http://dawa.aws.dk/listerdok
 func (q *ListQuery) Q(s string) *ListQuery {
-	q.add(textQuery{Name: "q", Values: []string{s}, Multi: true, Null: false})
+	q.add(&textQuery{Name: "q", Values: []string{s}, Multi: true, Null: false})
 	return q
 }
 
@@ -53,7 +53,7 @@ func (q *ListQuery) Q(s string) *ListQuery {
 //
 // Kode for det der søges.
 func (q *ListQuery) Kode(s ...string) *ListQuery {
-	q.add(textQuery{Name: "kode", Values: s, Multi: true, Null: false})
+	q.add(&textQuery{Name: "kode", Values: s, Multi: true, Null: false})
 	return q
 }
 
@@ -61,13 +61,13 @@ func (q *ListQuery) Kode(s ...string) *ListQuery {
 //
 // Navn for det der søges.
 func (q *ListQuery) Navn(s string) *ListQuery {
-	q.add(textQuery{Name: "navn", Values: []string{s}, Multi: true, Null: false})
+	q.add(&textQuery{Name: "navn", Values: []string{s}, Multi: true, Null: false})
 	return q
 }
 
 // NoFormat will disable extra whitespace. Always enabled when querying
 func (q *ListQuery) NoFormat() *ListQuery {
-	q.add(textQuery{Name: "noformat", Multi: false, Null: true})
+	q.add(&textQuery{Name: "noformat", Multi: false, Null: true})
 	return q
 }
 
@@ -322,10 +322,10 @@ func NewReverseQuery(listType string, x, y float64, srid string) (*ListIter, err
 	if typ == nil {
 		return nil, fmt.Errorf("unknown list type '%s'", listType)
 	}
-	q.add(textQuery{Name: "x", Values: []string{strconv.FormatFloat(x, 'f', -1, 64)}, Multi: false, Null: false})
-	q.add(textQuery{Name: "y", Values: []string{strconv.FormatFloat(y, 'f', -1, 64)}, Multi: false, Null: false})
+	q.add(&textQuery{Name: "x", Values: []string{strconv.FormatFloat(x, 'f', -1, 64)}, Multi: false, Null: false})
+	q.add(&textQuery{Name: "y", Values: []string{strconv.FormatFloat(y, 'f', -1, 64)}, Multi: false, Null: false})
 	if srid != "" {
-		q.add(textQuery{Name: "srid", Values: []string{srid}, Multi: false, Null: false})
+		q.add(&textQuery{Name: "srid", Values: []string{srid}, Multi: false, Null: false})
 	}
 	// Execute request
 	resp, err := q.NoFormat().Request()
