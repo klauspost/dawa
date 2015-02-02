@@ -26,6 +26,7 @@ type query struct {
 	host     string
 	path     string
 	params   map[string]parameter
+	keys     []string // Keys in the order they were added
 	warnings []error
 }
 
@@ -67,6 +68,7 @@ func (q *query) add(p parameter) {
 		q.params[key] = pOld
 		return
 	}
+	q.keys = append(q.keys, key)
 	q.params[key] = p
 }
 
@@ -89,13 +91,12 @@ func (q query) URL() string {
 		return out
 	}
 	out += "?"
-	i := len(q.params) - 1
-	for _, value := range q.params {
-		out += value.Param()
-		if i > 0 {
+
+	for i, key := range q.keys {
+		out += q.params[key].Param()
+		if i < len(q.keys)-1 {
 			out += "&"
 		}
-		i--
 	}
 	return out
 }
