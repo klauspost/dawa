@@ -183,8 +183,9 @@ func (q query) Request() (io.ReadCloser, error) {
 	if e2 != nil || len(u) == 0 {
 		return nil, fmt.Errorf("Error with request %s", url)
 	}
-	rerr := RequestError{URL: url}
-	e2 = json.Unmarshal(u, &rerr)
+	var rerr RequestError
+	_ = json.Unmarshal(u, &rerr)
+	rerr.URL = url
 	return nil, rerr
 }
 
