@@ -22,11 +22,9 @@ This will also install the only dependecy "go-codec": https://github.com/ugorji/
 To use the library in your own code, simply add ```import "github.com/klauspost/dawa"``` to your imports.
 
 # Documentation
-[![GoDoc][1]][2] [![Build Status][3]][4]
-[1]: https://godoc.org/github.com/klauspost/dawa?status.svg
-[2]: https://godoc.org/github.com/klauspost/dawa
-[3]: https://travis-ci.org/klauspost/dawa.svg
-[4]: https://travis-ci.org/klauspost/dawa
+
+[![Godoc](https://godoc.org/github.com/klauspost/dawa?status.svg)](https://godoc.org/github.com/klauspost/dawa)
+[![Build Status](https://travis-ci.org/klauspost/dawa.svg)](https://travis-ci.org/klauspost/dawa)
 
 # Usage
 
