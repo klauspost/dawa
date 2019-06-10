@@ -25,7 +25,7 @@ func TestAddresseQueryParameters(t *testing.T) {
 		t.Fatal("Unable to find expected field 'postnr'")
 	}
 	if len(param) != 1 {
-		t.Fatal("Number of parameters expected to be 1, was %d", len(param))
+		t.Fatalf("Number of parameters expected to be 1, was %d", len(param))
 	}
 	expect := `|1234|abcdef|æøå|"?!"#¤=%&|&|234.0|"abc"`
 	if param[0] != expect {
