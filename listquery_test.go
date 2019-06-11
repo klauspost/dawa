@@ -18,7 +18,7 @@ func TestListQueryParameters(t *testing.T) {
 		t.Fatal("Unable to find expected field 'kode'")
 	}
 	if len(param) != 1 {
-		t.Fatal("Number of parameters expected to be 1, was %d", len(param))
+		t.Fatalf("Number of parameters expected to be 1, was %d", len(param))
 	}
 	expect := `|1234|abcdef|æøå|"?!"#¤=%&|&|234.0|"abc"`
 	if param[0] != expect {
@@ -50,15 +50,14 @@ var ListURL = []qb{
 	qb{NewListQuery("regioner", true).URL(), DefaultHost + "/regioner/autocomplete"},
 
 	// Test params
-	qb{NewListQuery("regioner", false).Q(singleParam).URL(), DefaultHost + "/regioner?q="+ singleEncoded+""},
-	qb{NewListQuery("regioner", false).Kode(multiParam...).URL(), DefaultHost + "/regioner?kode="+ multiEncoded+""},
-	qb{NewListQuery("regioner", false).Navn(singleParam).URL(), DefaultHost + "/regioner?navn="+ singleEncoded+""},
+	qb{NewListQuery("regioner", false).Q(singleParam).URL(), DefaultHost + "/regioner?q=" + singleEncoded + ""},
+	qb{NewListQuery("regioner", false).Kode(multiParam...).URL(), DefaultHost + "/regioner?kode=" + multiEncoded + ""},
+	qb{NewListQuery("regioner", false).Navn(singleParam).URL(), DefaultHost + "/regioner?navn=" + singleEncoded + ""},
 	qb{NewListQuery("regioner", false).NoFormat().URL(), DefaultHost + "/regioner?noformat="},
 
 	// Test multiparam
 	qb{NewListQuery("regioner", false).Q(singleParam).Kode(multiParam...).Navn(singleParam).NoFormat().URL(),
-					DefaultHost + "/regioner?q="+ singleEncoded+"&kode="+ multiEncoded+"&navn="+ singleEncoded+"&noformat="},
-
+		DefaultHost + "/regioner?q=" + singleEncoded + "&kode=" + multiEncoded + "&navn=" + singleEncoded + "&noformat="},
 }
 
 func TestListQueryURL(t *testing.T) {

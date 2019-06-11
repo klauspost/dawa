@@ -3,9 +3,10 @@ package dawa
 import (
 	"bufio"
 	"encoding/csv"
-	"github.com/ugorji/go/codec"
 	"io"
 	"strconv"
+
+	"github.com/ugorji/go/codec"
 )
 
 // En adgangsadresse er en struktureret betegnelse som angiver en særskilt
@@ -35,6 +36,17 @@ type AdgangsAdresse struct {
 	SupplerendeBynavn string              `json:"supplerendebynavn"` // Et supplerende bynavn – typisk landsbyens navn – eller andet lokalt stednavn, der er fastsat af kommunen for at præcisere adressens beliggenhed indenfor postnummeret.
 	Vejstykke         VejstykkeRef        `json:"vejstykke"`         // Vejstykket som adressen er knyttet til.
 	Zone              string              `json:"zone"`              // Hvilken zone adressen ligger i. "Byzone", "Sommerhusområde" eller "Landzone". Beregnes udfra adgangspunktet og zoneinddelingerne fra PlansystemDK
+
+	// Fields returned in autocomplete
+	Text                string `json:"tekst"`
+	AutocompleteAddress `json:"adgangsadresse"`
+}
+
+type AutocompleteAddress struct {
+	Street     string `json:"vejnavn"`
+	Husnr      string `json:"husnr"`
+	PostNumber string `json:"postnr"`
+	PostName   string `json:"postnrnavn"`
 }
 
 // Adressens placering i Det Danske Kvadratnet (DDKN).
