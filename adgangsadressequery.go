@@ -30,7 +30,7 @@ func NewAdgangsAdresseQuery() *AdgangsAdresseQuery {
 //
 // See documentation at http://dawa.aws.dk/adgangsadressedok#adresseautocomplete
 func NewAdgangsAdresseComplete() *AdgangsAdresseQuery {
-	return &AdgangsAdresseQuery{queryGeoJSON: queryGeoJSON{query: query{host: DefaultHost, path: "/adgangsadresser/autocomplete"}}}
+	return &AdgangsAdresseQuery{queryGeoJSON: queryGeoJSON{query: query{host: DefaultHost, path: "/autocomplete"}}}
 }
 
 // GetAAID will return a single AdgangsAdresse with the specified ID.
