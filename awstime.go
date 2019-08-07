@@ -53,7 +53,7 @@ func (t *AwsTime) UnmarshalText(text []byte) error {
 // UnmarshalJSON a single time field
 // It will attempt AWS encoding, and if that fails standard UnmarshalJSON for time.Time
 func (t *AwsTime) UnmarshalJSON(b []byte) error {
-	unquoted := strings.Trim(string(b), "\"")
+	unquoted := strings.Trim(string(b), "\" ")
 	result, err := time.ParseInLocation("2006-01-02T15:04:05.000", unquoted, location)
 
 	// Could not parse, attempt standard unmarshall
